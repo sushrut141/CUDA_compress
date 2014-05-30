@@ -1,6 +1,6 @@
 CUDA_compress
 =============
-The file kernel.cu contains two main functions kernel and kernel2.kernel is implements the two dimensional Discrete Cosine Transform
+The file kernel.cu contains two main functions kernel and kernel2.kernel implements the two dimensional Discrete Cosine Transform
 (DCT-II)  with some degree of parallelization using the CUDA framework.
 The 2D-DCT is implemented as two one dimensional DCT's performed row wise and then column wise.
 Each call to the kernel utilizes 64 GPU threads which is much lesser than the 1024 limit but is the only way to parallelize the DCT 
