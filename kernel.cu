@@ -17,7 +17,7 @@ __global__ void kernel2(int *d_a)                              ///Inverse Discre
 
 	int bx = blockIdx.x;  int by = blockIdx.y;
 	int tx = threadIdx.x; int ty = threadIdx.y;
-	arr[ty][tx] = d_a[(by*768 + bx)*64 + ty*8 + tx];
+	arr[ty][tx] = d_a[(bx)*64 + ty*8 + tx];
 
 	__syncthreads();
 
@@ -39,7 +39,7 @@ __global__ void kernel2(int *d_a)                              ///Inverse Discre
 	}
 
 	
-	d_a[(by*blockDim.y + bx)*64 + ty*8 + tx] = (out[ty][tx]);
+	d_a[(bx)*64 + ty*8 + tx] = (out[ty][tx]);
 
 }
 
@@ -71,7 +71,7 @@ __global__ void kernel(int *d_a)                               ////Discrete Cosi
 		out[k][tx]*=coef[k];
 	}
 	__syncthreads();
-	d_a[(by*blockDim.y + bx)*64 + ty*8 + tx] = out[ty][tx];
+	d_a[(bx)*64 + ty*8 + tx] = out[ty][tx];
 
 }
 
